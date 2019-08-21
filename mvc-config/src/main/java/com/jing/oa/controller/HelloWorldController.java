@@ -5,6 +5,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+/**
+ * @author GuoJingyuan
+ * @date 2019/8/10
+ */
 @Controller
 public class HelloWorldController {
 
