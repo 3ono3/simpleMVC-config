@@ -17,9 +17,19 @@ public class UserService {
     private UserDao userDao;
 
     public int insert(User user){
-        if (true) {
-            throw new CustomerException(ResultCodeEnum.USER_INSERT_ERROR);
-        }
         return userDao.insert(user);
     }
+
+    public User selectById(String id) {
+        return userDao.selectByPrimaryKey(id);
+    }
+
+    public User loginVerify(String account, String password) throws CustomerException {
+        User user = userDao.selectByAccountAndPassword(account, password);
+        if (user == null) {
+            throw new CustomerException(ResultCodeEnum.LOGIN_ERROR);
+        }
+        return user;
+    }
+
 }

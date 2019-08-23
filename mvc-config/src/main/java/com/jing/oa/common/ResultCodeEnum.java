@@ -11,6 +11,7 @@ public enum ResultCodeEnum {
     SYSTEM_ERROR("99999", "系统异常"),
 
     USER_INSERT_ERROR("01000", "用户插入异常"),
+    LOGIN_ERROR("010001", "用户名或密码错误"),
     ;
 
     private String code;
