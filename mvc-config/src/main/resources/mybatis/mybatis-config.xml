@@ -10,5 +10,7 @@
     <!-- 命名空间 -->
     <typeAliases>
         <typeAlias type="com.jing.oa.model.User" alias="User"/>
+        <typeAlias type="com.jing.oa.model.Role" alias="Role"/>
+        <typeAlias type="com.jing.oa.model.Permission" alias="Permission"/>
     </typeAliases>
 </configuration>

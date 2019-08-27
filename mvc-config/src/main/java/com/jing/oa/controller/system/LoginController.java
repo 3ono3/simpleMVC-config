@@ -36,7 +36,7 @@ public class LoginController {
             token.setUsername(account);
             token.setPassword(password.toCharArray());
             SecurityUtils.getSubject().login(token);
-            result.setViewName("redirect:hello");
+            result.setViewName("redirect:index");
         } catch (AuthenticationException e) {
 //            e.printStackTrace();
             logger.error("login失败：", e);

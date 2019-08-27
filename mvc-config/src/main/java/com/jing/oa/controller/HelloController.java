@@ -14,20 +14,13 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class HelloController {
 
-    @RequestMapping(value = "/hello", method = RequestMethod.GET)
+    @RequestMapping(value = "/index", method = RequestMethod.GET)
     public ModelAndView helloWorld() {
         ModelAndView mv = new ModelAndView();
         mv.setViewName("hello");
         User user = (User) SecurityUtils.getSubject().getPrincipal();
 
         mv.addObject("haha","欢迎您"+user.getName());
-        return mv;
-    }
-
-    @RequestMapping(value = "/oa/hello2.do", method = RequestMethod.GET)
-    public ModelAndView helloWorld2() {
-        ModelAndView mv = new ModelAndView();
-        mv.setViewName("forward:/oa/hello.do");
         return mv;
     }
 }
