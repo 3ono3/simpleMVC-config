@@ -1,0 +1,21 @@
+.layout:after {
+    clear: both;
+    content: " ";
+    display: table;
+}
+.layout__aside, .layout__main {
+    float: left;
+}
+.layout {
+    padding-left: 210px;
+}
+.layout__main {
+    width: 100%;
+}
+.layout__aside {
+    width: 200px;
+    margin-left: -210px;
+}
+.br {
+    background-color: red;
+}

@@ -8,3 +8,41 @@ ALTER TABLE users ADD PRIMARY KEY (ID);
 
 INSERT INTO users(ID, NAME, ACCOUNT, PASSWORD) 
 VALUE ('001','管理员','admin','password');
+
+CREATE TABLE role(
+	ID VARCHAR(255) PRIMARY key,
+	ROLE_NAME VARCHAR(255) not null
+);
+
+CREATE TABLE permission(
+	ID VARCHAR(255) PRIMARY KEY,
+	TITLE VARCHAR(255) not null
+);
+
+CREATE TABLE user_role(
+	ID VARCHAR(255) PRIMARY key,
+	USER_ID VARCHAR(255),
+	ROLE_ID VARCHAR(255),
+	CONSTRAINT fk_userId_users FOREIGN KEY (USER_ID) REFERENCES users(ID),
+	CONSTRAINT fk_roleId_role FOREIGN KEY (ROLE_ID) REFERENCES role(ID)
+);
+
+CREATE TABLE role_permission(
+	ID VARCHAR(255) PRIMARY key,
+	ROLE_ID VARCHAR(255),
+	PERMISSION_ID VARCHAR(255),
+	CONSTRAINT fk_permissionId_permission FOREIGN KEY (PERMISSION_ID) REFERENCES permission(ID),
+	CONSTRAINT fk_rp_roleId_role FOREIGN KEY (ROLE_ID) REFERENCES role(ID)
+);
+
+
+ALTER TABLE permission ADD COLUMN (
+	instructions VARCHAR(255)
+);
+
+ALTER TABLE permission CHANGE instructions INSTRUCTIONS VARCHAR(255);
+
+INSERT INTO permission (id, title, instructions) VALUES('001', '*', '全部');
+INSERT INTO role(id, role_name) VALUES('001', '管理员');
+INSERT INTO role_permission(id, role_id, PERMISSION_ID) VALUES('001', '001','001');
+INSERT INTO user_role(id, user_id, role_id) VALUES('001','001','001');

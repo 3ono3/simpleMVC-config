@@ -89,21 +89,15 @@
     <div class="user dropdown">
         <div></div>
         <span>欢迎: </span>
-        <a data-toggle="dropdown" class="dpa">
-
-            <%--admin--%>
+        <a data-toggle="dropdown">
             <shiro:principal property="name"/>
-
         <span class="caret"></span>
         </a>
-        <ul style="width: 50px;" class="dropdown-menu" aria-labelledby="dropdownMenu1">
-            <shiro:authenticated>
-                <%--<a class="tab-item" href="${p}/logout.service">注销</a>--%>
-                <li><a href="${p}/logout">注销</a></li>
-            </shiro:authenticated>
+        <shiro:authenticated>
+            <a href="${p}/logout" style="color: #ffffff;font-size: 14px;line-height: 20px;margin: 16px; text-decoration: none">注销</a>
+        </shiro:authenticated>
 
             <%--<li><a href="#">注销1</a></li>--%>
 
-        </ul>
     </div>
 </div>
