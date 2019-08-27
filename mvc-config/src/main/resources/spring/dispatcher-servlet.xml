@@ -21,6 +21,13 @@
         </mvc:message-converters>
     </mvc:annotation-driven>
 
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <bean class="com.jing.oa.interceptor.MonitorInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
+
     <!--配置页面跳转-->
     <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <!--<property name="requestContextAttribute" value="rc"/>-->
