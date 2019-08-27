@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 /**
  * @author GuoJingyuan
@@ -23,28 +24,16 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping("/insert.do")
-    @ResponseBody
-    public JsonResult insert() {
-        logger.info("请求路径----");
-        try {
-            User user = new User();
-            user.setId("1234");
-            user.setName("莉莉娅");
-            int num = userService.insert(user);
-            return JsonResult.ok();
-        } catch (CustomerException e) {
-            return JsonResult.error(e);
-        } catch (Exception e) {
-            return JsonResult.unexpectedError();
-        }
+    @RequestMapping("/index")
+    public ModelAndView insert() {
+        return new ModelAndView("user");
     }
 
-    @RequestMapping("/get")
+    @RequestMapping("/getById")
     @ResponseBody
-    public JsonResult selectById() {
+    public JsonResult selectById(String userId) {
         try {
-            User user = userService.selectById("1234");
+            User user = userService.selectById(userId);
             return JsonResult.ok(user);
         }catch (CustomerException e) {
             return JsonResult.error(e);

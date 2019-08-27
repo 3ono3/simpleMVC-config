@@ -33,7 +33,9 @@
     <servlet-mapping>
         <servlet-name>default</servlet-name>
         <url-pattern>/static/*</url-pattern>
-        <url-pattern>/index.html</url-pattern>
+        <url-pattern>*.js</url-pattern>
+        <url-pattern>*.css</url-pattern>
+        <url-pattern>*.html</url-pattern>
     </servlet-mapping>
 
     <!--字符集-->
@@ -68,5 +70,8 @@
         <url-pattern>/*</url-pattern>
     </filter-mapping>
 
-
+    <error-page>
+        <exception-type>java.lang.Exception</exception-type>
+        <location>/pages/framework/error.jsp</location>
+    </error-page>
 </web-app>

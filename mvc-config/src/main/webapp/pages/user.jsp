@@ -5,17 +5,16 @@
 <head>
     <c:import url="./framework/top.jsp" charEncoding="UTF-8"/>
     <meta charset="utf-8">
-    <title>Hello</title>
+    <title>用户管理</title>
 </head>
 <link rel="stylesheet" href="${p}/pages/framework/style.css">
 <body style="padding: 0;margin: 0;">
     <div class="layout">
         <c:import url="./framework/left.jsp" charEncoding="UTF-8"/>
         <div class="layout__main">
-            <h1 class="br">hello-world</h1>
-            <h2>${haha}</h2>
+            <h1 class="br">用户管理</h1>
+            <button type="button" id="addUser">新增用户</button>
         </div>
     </div>
-
 </body>
 </html>

@@ -75,35 +75,29 @@
 <div class="nav_container">
     <div class="logo"></div>
     <div class="menu">
-        <a href="${p}/index/"><span <c:if test="${param.page == 'index'}">class="menu_active"</c:if> >首页</span></a>
+        <a href="${p}/index"><span <c:if test="${param.page == 'index'}">class="menu_active"</c:if> >首页</span></a>
         <shiro:hasPermission name="system:user">
-        <a href="${p}/user/"><span <c:if test="${param.page == 'user'}">class="menu_active"</c:if> >用户管理</span></a>
+        <a href="${p}/user/index"><span <c:if test="${param.page == 'user'}">class="menu_active"</c:if> >用户管理</span></a>
         </shiro:hasPermission>
         <shiro:hasPermission name="system:role">
-        <a href="${p}/role/"><span <c:if test="${param.page == 'role'}">class="menu_active"</c:if> >角色管理</span></a>
+        <a href="${p}/role/index"><span <c:if test="${param.page == 'role'}">class="menu_active"</c:if> >角色管理</span></a>
         </shiro:hasPermission>
         <shiro:hasPermission name="system:activity">
-        <a href="${p}/activity/"><span <c:if test="${param.page == 'activity'}">class="menu_active"</c:if> >日志管理</span></a>
+        <a href="${p}/activity/index"><span <c:if test="${param.page == 'activity'}">class="menu_active"</c:if> >日志管理</span></a>
         </shiro:hasPermission>
     </div>
     <div class="user dropdown">
         <div></div>
         <span>欢迎: </span>
-        <a data-toggle="dropdown" class="dpa">
-
-            <%--admin--%>
+        <a data-toggle="dropdown">
             <shiro:principal property="name"/>
-
         <span class="caret"></span>
         </a>
-        <ul style="width: 50px;" class="dropdown-menu" aria-labelledby="dropdownMenu1">
-            <shiro:authenticated>
-                <%--<a class="tab-item" href="${p}/logout.service">注销</a>--%>
-                <li><a href="${p}/logout">注销</a></li>
-            </shiro:authenticated>
+        <shiro:authenticated>
+            <a href="${p}/logout" style="color: #ffffff;font-size: 14px;line-height: 20px;margin: 16px; text-decoration: none">注销</a>
+        </shiro:authenticated>
 
             <%--<li><a href="#">注销1</a></li>--%>
 
-        </ul>
     </div>
 </div>

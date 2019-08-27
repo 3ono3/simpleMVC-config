@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jing.oa.dao.PermissionDao" >
+  <resultMap id="BaseResultMap" type="Permission" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="TITLE" property="title" jdbcType="VARCHAR" />
+    <result column="INSTRUCTIONS" property="instructions" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, TITLE, INSTRUCTIONS
+  </sql>
+  <select id="getRolePermissions" resultMap="BaseResultMap" parameterType="java.lang.String">
+    select
+    p.id, p.title, p.instructions
+    from role r
+    left join role_permission rp on r.id = rp.role_id
+    left join permission p on rp.permissioin_id = p.id
+    where r.id = #{roleId}
+  </select>
+  <select id="getUserPermissions" resultMap="BaseResultMap" parameterType="java.lang.String">
+    select
+    p.id, p.title, p.instructions
+    from users u
+    left join user_role ur on ur.user_id = u.id
+    left join role r on ur.role_id = r.id
+    left join role_permission rp on r.id = rp.role_id
+    left join permission p on rp.permission_id = p.id
+    where u.id = #{userId}
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from permission
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from permission
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="Permission" >
+    insert into permission (ID, TITLE, INSTRUCTIONS
+      )
+    values (#{id,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, #{instructions,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="Permission" >
+    insert into permission
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="title != null" >
+        TITLE,
+      </if>
+      <if test="instructions != null" >
+        INSTRUCTIONS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="instructions != null" >
+        #{instructions,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="Permission" >
+    update permission
+    <set >
+      <if test="title != null" >
+        TITLE = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="instructions != null" >
+        INSTRUCTIONS = #{instructions,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="Permission" >
+    update permission
+    set TITLE = #{title,jdbcType=VARCHAR},
+      INSTRUCTIONS = #{instructions,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>
