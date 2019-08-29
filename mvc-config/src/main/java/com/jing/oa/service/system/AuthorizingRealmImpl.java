@@ -14,6 +14,7 @@ import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.Permission;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.authz.permission.WildcardPermission;
+import org.apache.shiro.cache.Cache;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.slf4j.Logger;
@@ -73,6 +74,26 @@ public class AuthorizingRealmImpl extends AuthorizingRealm {
             throw new AuthenticationException(e.getDesc(), e);
         }
         SimpleAuthenticationInfo info = new SimpleAuthenticationInfo(user, user.getPassword(), user.getAccount());
+        clearAuthorizationInfoCache(user);
         return info;
+    }
+
+    /**
+     * 清除所有用户的缓存
+     */
+    public void clearAuthorizationInfoCache() {
+        Cache<Object, AuthorizationInfo> cache = getAuthorizationCache();
+        if(cache!=null) {
+            cache.clear();
+        }
+    }
+
+    /**
+     * 清除指定用户的缓存
+     * @param user
+     */
+    private void clearAuthorizationInfoCache(User user) {
+        Cache<Object, AuthorizationInfo> cache = getAuthorizationCache();
+        cache.remove(user.getId());
     }
 }

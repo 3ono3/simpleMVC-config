@@ -7,11 +7,10 @@
        http://www.springframework.org/schema/context
        http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <context:property-placeholder location="classpath:properties/redis.properties"/>
-
     <!--其他配置-->
     <bean id="poolConfig" class="redis.clients.jedis.JedisPoolConfig">
-        <property name="testOnBorrow" value="${redis.testOnBorrow}"/>
+        <property name="testOnBorrow" value="true"/>
+        <property name="maxWaitMillis" value="1000"/>
     </bean>
 
     <bean id="mutableJedisClientConfiguration" class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory$MutableJedisClientConfiguration">
@@ -20,12 +19,12 @@
 
     <!--密码设置，redis2.x直接设置密码报错,String类型无法转化为RedisPassword-->
     <bean id="redisPassword" class="org.springframework.data.redis.connection.RedisPassword">
-        <constructor-arg name="thePassword" value="${redis.password}"/>
+        <constructor-arg name="thePassword" value=""/>
     </bean>
     <!--单点连接-->
     <bean id="standaloneConfig" class="org.springframework.data.redis.connection.RedisStandaloneConfiguration">
         <property name="hostName" value="${redis.hostName}"/>
-        <property name="port" value="${redis.port}"/>
+        <property name="port" value="6379"/>
         <property name="password" ref="redisPassword"/>
     </bean>
 
@@ -36,7 +35,8 @@
         <constructor-arg name="clientConfig" ref="mutableJedisClientConfiguration"/>
     </bean>
 
-    <bean id="redisTemplate" class="org.springframework.data.redis.core.StringRedisTemplate">
-        <constructor-arg name="connectionFactory" ref="connectionFactory"/>
+    <bean id="redisTemplate" class="org.springframework.data.redis.core.RedisTemplate">
+        <!--<constructor-arg name="connectionFactory" ref="connectionFactory"/>-->
+        <property name="connectionFactory" ref="connectionFactory"/>
     </bean>
 </beans>

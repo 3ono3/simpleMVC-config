@@ -4,7 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
 /**
  * @author GuoJingyuan
@@ -12,11 +12,11 @@ import org.springframework.data.redis.core.ValueOperations;
  */
 public class RedisTest {
 
-    private StringRedisTemplate redisTemplate;
+    private RedisTemplate redisTemplate;
     @Before
     public void loadProperties() {
         ApplicationContext applicationContext = new ClassPathXmlApplicationContext("classpath:spring/redis.xml");
-        redisTemplate = (StringRedisTemplate) applicationContext.getBean("redisTemplate");
+        redisTemplate = (RedisTemplate) applicationContext.getBean("redisTemplate");
     }
     @Test
     public void testRedis() {
