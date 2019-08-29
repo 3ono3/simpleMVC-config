@@ -4,7 +4,6 @@
        xmlns:context="http://www.springframework.org/schema/context" xmlns:p="http://www.springframework.org/schema/p"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <context:property-placeholder location="classpath:properties/mysql.properties"/>
     <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"
         init-method="init" destroy-method="close">
         <property name="driverClassName" value="${jdbc.driverClassName}"/>

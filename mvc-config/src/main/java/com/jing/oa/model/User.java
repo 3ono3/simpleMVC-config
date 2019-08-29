@@ -1,10 +1,13 @@
 package com.jing.oa.model;
 
+import java.io.Serializable;
+
 /**
  * @author GuoJingyuan
  * @date 2019/8/12
  */
-public class User {
+public class User implements Serializable {
+
     private String id;
 
     private String name;
