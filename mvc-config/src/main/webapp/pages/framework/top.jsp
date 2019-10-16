@@ -75,16 +75,17 @@
 <div class="nav_container">
     <div class="logo"></div>
     <div class="menu">
-        <a href="${p}/index"><span <c:if test="${param.page == 'index'}">class="menu_active"</c:if> >首页</span></a>
+        <a href="${p}/index"><span >首页</span></a>
         <shiro:hasPermission name="system:user">
-        <a href="${p}/user/index"><span <c:if test="${param.page == 'user'}">class="menu_active"</c:if> >用户管理</span></a>
+        <a href="${p}/user/index"><span >用户管理</span></a>
         </shiro:hasPermission>
         <shiro:hasPermission name="system:role">
-        <a href="${p}/role/index"><span <c:if test="${param.page == 'role'}">class="menu_active"</c:if> >角色管理</span></a>
+        <a href="${p}/role/index"><span>角色管理</span></a>
         </shiro:hasPermission>
         <shiro:hasPermission name="system:activity">
-        <a href="${p}/activity/index"><span <c:if test="${param.page == 'activity'}">class="menu_active"</c:if> >日志管理</span></a>
+        <a href="${p}/activity/index"><span>日志管理</span></a>
         </shiro:hasPermission>
+        <a href="${p}/file/index"><span>文件管理</span></a>
     </div>
     <div class="user dropdown">
         <div></div>
