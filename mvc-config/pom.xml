@@ -11,7 +11,7 @@
 
     <properties>
         <spring.version>5.1.5.RELEASE</spring.version>
-        <apache.shiro>1.2.4</apache.shiro>
+        <apache.shiro>1.10.0</apache.shiro>
         <fasterxml.jackson>2.9.9</fasterxml.jackson>
     </properties>
 
